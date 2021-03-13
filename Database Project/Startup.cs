@@ -1,3 +1,4 @@
+using Database_Project.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,6 +6,9 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Database_Project.Database.Repositories;
 
 namespace Database_Project
 {
@@ -26,6 +30,18 @@ namespace Database_Project
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            var connectionString = Configuration.GetConnectionString("database");
+            // Add database context
+            services.AddDbContext<DatabaseContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("database"));
+            });
+
+
+            services.AddTransient<UserRepository>();
+            services.AddTransient<ArtistRepository>();
+            services.AddTransient<GenreRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
