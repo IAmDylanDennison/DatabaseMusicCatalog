@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Database_Project.Database.DatabaseModels;
 using Database_Project.Database.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -26,6 +27,13 @@ namespace Database_Project.Controllers
             return "Hello world";
         }
 
+        [HttpGet("{email}")]
+        [Authorize]
+        public ActionResult<User> Get(string email)
+        {
+            return _userRepository.GetUser(email);
+        }
+
         [HttpPost("New")]
         public ActionResult New(User user)
         {
@@ -33,7 +41,7 @@ namespace Database_Project.Controllers
             {
                 _userRepository.AddUser(user);
             }
-            catch
+            catch (Exception e)
             {
                 return BadRequest();
             }

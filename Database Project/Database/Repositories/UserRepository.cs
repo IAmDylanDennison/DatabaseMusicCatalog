@@ -14,6 +14,11 @@ namespace Database_Project.Database.Repositories
             _context = context;
         }
 
+        public User GetUser(string email)
+        {
+            return _context.User.Where(x => x.Email == email).FirstOrDefault();
+        }
+
         public void UpdateUser(User user)
         {
             _context.User.Update(user);
