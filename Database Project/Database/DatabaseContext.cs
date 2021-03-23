@@ -9,7 +9,14 @@ namespace Database_Project.Database
 {
     public class DatabaseContext  : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlite("Data Source=database.db");
+        }
         public DbSet<User> User { get; set; }
         public DbSet<Artist> Artist { get; set; }
         public DbSet<Music> Music { get; set; }

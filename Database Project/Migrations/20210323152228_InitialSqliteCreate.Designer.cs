@@ -3,36 +3,32 @@ using System;
 using Database_Project.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Database_Project.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210320215759_efUpdates")]
-    partial class efUpdates
+    [Migration("20210323152228_InitialSqliteCreate")]
+    partial class InitialSqliteCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.4")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.4");
 
             modelBuilder.Entity("Database_Project.Database.DatabaseModels.Artist", b =>
                 {
                     b.Property<int>("ArtistID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("GenreID")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ArtistID");
 
@@ -45,11 +41,10 @@ namespace Database_Project.Migrations
                 {
                     b.Property<int>("GenreID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("GenreID");
 
@@ -60,25 +55,26 @@ namespace Database_Project.Migrations
                 {
                     b.Property<int>("MusicId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Artist")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("ArtistID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("GenreID")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Length")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("YearReleased")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("MusicId");
+
+                    b.HasIndex("ArtistID");
 
                     b.HasIndex("GenreID");
 
@@ -89,23 +85,22 @@ namespace Database_Project.Migrations
                 {
                     b.Property<int>("UID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Bio")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("UID");
 
@@ -116,17 +111,13 @@ namespace Database_Project.Migrations
                 {
                     b.Property<int>("UserArtistID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ArtistID")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("User")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserUID")
-                        .HasColumnType("int");
+                    b.Property<int>("UserUID")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("UserArtistID");
 
@@ -141,17 +132,13 @@ namespace Database_Project.Migrations
                 {
                     b.Property<int>("UserGenreID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("GenreID")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("User")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserUID")
-                        .HasColumnType("int");
+                    b.Property<int>("UserUID")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("UserGenreID");
 
@@ -166,17 +153,13 @@ namespace Database_Project.Migrations
                 {
                     b.Property<int>("UserMusicID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("MusicId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("User")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserUID")
-                        .HasColumnType("int");
+                    b.Property<int>("UserUID")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("UserMusicID");
 
@@ -200,11 +183,17 @@ namespace Database_Project.Migrations
 
             modelBuilder.Entity("Database_Project.Database.DatabaseModels.Music", b =>
                 {
+                    b.HasOne("Database_Project.Database.DatabaseModels.Artist", "Artist")
+                        .WithMany()
+                        .HasForeignKey("ArtistID");
+
                     b.HasOne("Database_Project.Database.DatabaseModels.Genre", "Genre")
                         .WithMany()
                         .HasForeignKey("GenreID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Artist");
 
                     b.Navigation("Genre");
                 });
@@ -219,7 +208,9 @@ namespace Database_Project.Migrations
 
                     b.HasOne("Database_Project.Database.DatabaseModels.User", null)
                         .WithMany("UserArtists")
-                        .HasForeignKey("UserUID");
+                        .HasForeignKey("UserUID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Artist");
                 });
@@ -234,7 +225,9 @@ namespace Database_Project.Migrations
 
                     b.HasOne("Database_Project.Database.DatabaseModels.User", null)
                         .WithMany("UserGenres")
-                        .HasForeignKey("UserUID");
+                        .HasForeignKey("UserUID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Genre");
                 });
@@ -249,7 +242,9 @@ namespace Database_Project.Migrations
 
                     b.HasOne("Database_Project.Database.DatabaseModels.User", null)
                         .WithMany("UserMusic")
-                        .HasForeignKey("UserUID");
+                        .HasForeignKey("UserUID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Music");
                 });

@@ -38,10 +38,17 @@ namespace Database_Project
 
             var connectionString = Configuration.GetConnectionString("database");
             // Add database context
-            services.AddDbContext<DatabaseContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("database"));
-            });
+            //services.AddDbContext<DatabaseContext>(options =>
+            //{
+            //    options.UseSqlite(Configuration.GetConnectionString("database"));
+            //});
+
+            services.AddDbContext<DatabaseContext>((sp, options) => {
+                options.UseSqlite("Data Source=" + Configuration.GetConnectionString("sqlliteDatabase"));
+                //options.UseInternalServiceProvider(sp);
+                }
+            );
+
 
 
             services.AddTransient<UserRepository>();
