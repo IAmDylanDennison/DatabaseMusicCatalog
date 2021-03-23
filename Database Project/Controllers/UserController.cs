@@ -35,7 +35,7 @@ namespace Database_Project.Controllers
         }
 
         [HttpPost("New")]
-        public ActionResult New(User user)
+        public ActionResult<User> New(User user)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace Database_Project.Controllers
             {
                 return BadRequest();
             }
-            return Ok();
+            return Ok(user);
         }
     }
 }

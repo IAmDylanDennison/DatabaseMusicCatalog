@@ -42,7 +42,7 @@ namespace Database_Project.Database.Repositories
             var userGenre = new UserGenre()
             {
                 Genre = genre,
-                User = user
+                UserUID = user.UID
             };
 
             _context.UserGenre.Add(userGenre);
@@ -54,7 +54,7 @@ namespace Database_Project.Database.Repositories
             var userArtist = new UserArtist()
             {
                 Artist = artist,
-                User = user
+                UserUID = user.UID
             };
 
             _context.UserArtist.Add(userArtist);
@@ -66,7 +66,7 @@ namespace Database_Project.Database.Repositories
             var userMusic = new UserMusic()
             {
                 Music = music,
-                User = user
+                UserUID = user.UID
             };
 
             _context.UserMusic.Add(userMusic);

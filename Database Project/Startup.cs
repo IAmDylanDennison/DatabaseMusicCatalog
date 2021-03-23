@@ -12,6 +12,8 @@ using Database_Project.Database.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Logging;
+using System;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Database_Project
 {

@@ -30,7 +30,15 @@ export class AuthService {
         this.userService.getUser(firebaseUser.email).subscribe(user => {
           this.user$.next(user);
         },
-          error => { })
+          error => {
+            // only happens if there is not a user.
+            if (theToken) {
+              var newUser: User = new User();
+              newUser.email = firebaseUser.email;
+              this.userService.createUser(newUser)
+                .subscribe(user => this.user$.next(user));
+            }
+          })
       }, failReason => {
         this.doSignedOutUser();
       })

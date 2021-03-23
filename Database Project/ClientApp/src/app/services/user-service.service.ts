@@ -10,8 +10,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(user: User): Observable<void> {
-    return this.http.post<void>('/api/user/new', user);
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>('/api/user/new', user);
   }
 
   getUser(email: string): Observable<User> {

@@ -17,7 +17,7 @@ namespace Database_Project.Database.DatabaseModels
         public string Username { get; set; }
         // Eventually do Image
         public List<UserMusic> UserMusic { get; set; } // make sure this works
-        public List<UserArtist> UserArtists { get; set; } // fix later
+        public List<UserArtist> UserArtists { get; set; }
         public List<UserGenre> UserGenres { get; set; }
         public string Bio { get; set; }
     }

@@ -20,7 +20,9 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginWithGoogle() {
+  // this does not work
+  // error 400 invalid scope
+  loginWithGoogle() { 
     this.authService.doGoogleSignIn().then(_ => {
       this.router.navigate(['']);
     });
@@ -34,7 +36,7 @@ export class LoginPageComponent implements OnInit {
     user.firstName = this.firstName;
     
     this.authService.signUp(user, this.password);
-    console.log("signed up");
+    this.router.navigateByUrl('');
   }
 
 }
