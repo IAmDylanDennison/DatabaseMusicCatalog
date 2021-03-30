@@ -1,0 +1,22 @@
+<div *ngIf="!loading">
+  <form>
+    <input [(ngModel)]="song.name" type="text" name="name" placeholder="Name" />
+    <br />
+    <input [(ngModel)]="song.yearReleased" type="text" name="yearReleased" placeholder="Year Released" />
+    <br />
+    <input [(ngModel)]="song.length" type="number" name="length" placeholder="Song length" />
+    <!-- insert genre and artist here -->
+    <button (click)="login()" type="submit">
+      <span *ngIf="adding">Add</span>
+      <span *ngIf="!adding">Update</span>
+    </button>
+    <br />
+  </form>
+
+
+
+  <a routerLink="../home">Go back</a>
+</div>
+<div *ngIf="loading" class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>

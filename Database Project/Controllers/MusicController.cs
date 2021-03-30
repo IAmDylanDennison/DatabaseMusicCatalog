@@ -25,12 +25,26 @@ namespace Database_Project.Controllers
             return _musicRepository.GetAll();
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public ActionResult AddMusic(Music music)
         {
             try
             {
                 _musicRepository.AddMusic(music);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost("update")]
+        public ActionResult UpdateMusic(Music music)
+        {
+            try
+            {
+                _musicRepository.UpdateMusic(music);
                 return Ok();
             }
             catch (Exception e)
