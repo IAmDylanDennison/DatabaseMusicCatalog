@@ -1,3 +1,7 @@
+import { UserMusic } from "./userMusic";
+import { UserArtist } from "./userArtist";
+import { UserGenre } from "./userGenre";
+
 export class User {
   public UID: number;
   public firstName: string;
@@ -5,4 +9,7 @@ export class User {
   public email: string;
   public username: string;
   public bio: string;
+  public userMusic: Array<UserMusic>;
+  public userArtists: Array<UserArtist>;
+  public userGenres: Array<UserGenre>;
 }
