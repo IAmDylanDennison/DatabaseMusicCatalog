@@ -15,6 +15,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AuthInterceptor } from './security/auth-interceptor';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     CounterComponent,
     FetchDataComponent,
     LoginPageComponent,
-    SignUpComponent
+    SignUpComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -39,6 +42,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     ]),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    NgxPaginationModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
