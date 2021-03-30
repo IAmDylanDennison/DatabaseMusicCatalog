@@ -13,9 +13,11 @@ export class HomeComponent {
   $authSubscription: Subscription;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.$authSubscription = this.authService.user$.subscribe(u =>
-      this.currentUser = u
-      );
+    this.$authSubscription = this.authService.user$.subscribe(u => {
+      this.currentUser = u;
+      console.log("current user: ", this.currentUser);
+    }
+    );
   }
 
 

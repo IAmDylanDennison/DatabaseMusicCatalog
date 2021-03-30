@@ -1,12 +1,18 @@
-<button (click)="loginWithGoogle()">Click me</button>
-<input [(ngModel)]="email" type="text" placeholder="Email"/>
-<br />
-<input [(ngModel)]="password" type="password" placeholder="password" />
-<br />
-<input [(ngModel)]="firstName" type="text" placeholder="first name" />
-<br />
-<input [(ngModel)]="lastName" type="text" placeholder="last name" />
-<br />
-<input [(ngModel)]="username" type="text" placeholder="user name" />
-<br />
-<button (click)="signUp()">Sign up</button>
+<!--<button (click)="loginWithGoogle()">Click me</button> this button is for google sign up if it works-->
+<div *ngIf="!loading">
+  <form>
+    <input [(ngModel)]="email" type="text" name="email" placeholder="Email" />
+    <br />
+    <input [(ngModel)]="password" type="password" name="password" placeholder="password" />
+    <br />
+    <button (click)="login()" type="submit">Login</button>
+    <br />
+  </form>
+
+
+
+  <a routerLink="../signup">Sign up</a>
+</div>
+<div *ngIf="loading" class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>

@@ -58,14 +58,14 @@ namespace Database_Project
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    var firebaseProjectName = Configuration["FirebaseProjectName"];
-                    options.Authority = "https://securetoken.google.com/" + firebaseProjectName;
+                    var firebaseId = Configuration["FirebaseProjectID"];
+                    options.Authority = "https://securetoken.google.com/" + firebaseId;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
-                        ValidIssuer = "https://securetoken.google.com/" + firebaseProjectName,
+                        ValidIssuer = "https://securetoken.google.com/" + firebaseId,
                         ValidateAudience = true,
-                        ValidAudience = firebaseProjectName,
+                        ValidAudience = firebaseId,
                         ValidateLifetime = true
                     };
                 });

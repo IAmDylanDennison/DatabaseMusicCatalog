@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth-service.service';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-login-page',
@@ -10,10 +11,9 @@ import { User } from '../models/user';
 })
 export class LoginPageComponent implements OnInit {
   email: string;
-  username: string;
   password: string;
-  firstName: string;
-  lastName: string;
+
+  loading: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -28,15 +28,11 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  signUp() {
-    let user = new User();
-    user.email = this.email;
-    user.username = this.username;
-    user.lastName = this.lastName;
-    user.firstName = this.firstName;
-    
-    this.authService.signUp(user, this.password);
-    this.router.navigateByUrl('');
+  login() {
+    this.loading = true;
+    this.authService.signIn(this.email, this.password).then(user => {
+      this.loading = false;
+      this.router.navigate(['']);
+    })
   }
-
 }

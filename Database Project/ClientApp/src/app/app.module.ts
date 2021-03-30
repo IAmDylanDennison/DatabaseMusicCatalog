@@ -14,6 +14,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AuthInterceptor } from './security/auth-interceptor';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AuthInterceptor } from './security/auth-interceptor';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,7 +34,8 @@ import { AuthInterceptor } from './security/auth-interceptor';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'login', component: LoginPageComponent }
+      { path: 'login', component: LoginPageComponent },
+      { path: 'signup', component: SignUpComponent }
     ]),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

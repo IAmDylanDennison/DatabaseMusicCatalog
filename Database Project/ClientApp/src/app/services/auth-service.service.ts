@@ -90,4 +90,8 @@ export class AuthService {
 
     return false;
   }
+
+  signIn(email: string, password: string) {
+    return this.angularAuth.signInWithEmailAndPassword(email, password);
+  }
 }
