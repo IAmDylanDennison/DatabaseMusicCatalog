@@ -17,4 +17,12 @@ export class MusicService {
   updateMusic(music: Music): Observable<void> {
     return this.http.post<void>('/api/music/update', music);
   }
+
+  getAllMusic(): Observable<Array<Music>> {
+    return this.http.get<Array<Music>>('/api/music');
+  }
+
+  getById(id: number): Observable<Music> {
+    return this.http.get<Music>('/api/music/song/' + id);
+  }
 }

@@ -5,8 +5,13 @@
     <input [(ngModel)]="song.yearReleased" type="text" name="yearReleased" placeholder="Year Released" />
     <br />
     <input [(ngModel)]="song.length" type="number" name="length" placeholder="Song length" />
-    <!-- insert genre and artist here -->
-    <button (click)="login()" type="submit">
+    <select [(ngModel)]="song.artistID" name="artist">
+      <option *ngFor="let artist of artists" [ngValue]="artist.artistID">{{artist.name}}</option>
+    </select>
+    <select [(ngModel)]="song.genreID" name="genre">
+      <option *ngFor="let genre of genres" [ngValue]="genre.genreID">{{genre.name}}</option>
+    </select>
+    <button (click)="addOrUpdateSong()" type="submit">
       <span *ngIf="adding">Add</span>
       <span *ngIf="!adding">Update</span>
     </button>

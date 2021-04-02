@@ -1,1 +1,7 @@
-<h1>Hello, {{ currentUser.firstName }} {{ currentUser.lastName }} </h1>
+<div *ngIf="currentUser">
+  <h1>Hello, {{ currentUser.firstName }} {{ currentUser.lastName }} </h1>
+  <a [routerLink]="['song', -1]">Add music</a>
+  <app-table *ngIf="elements" [elements]="elements"
+             (elementClicked)="addMusic(music.value)"
+             [title]="'Music'"></app-table>
+</div>

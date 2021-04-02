@@ -41,7 +41,7 @@ import { SongComponent } from './song/song.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login', component: LoginPageComponent },
       { path: 'signup', component: SignUpComponent },
-      { path: 'song', component: SongComponent }
+      { path: 'song/:id', component: SongComponent }
     ]),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

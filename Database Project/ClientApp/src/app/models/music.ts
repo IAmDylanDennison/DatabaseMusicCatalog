@@ -6,7 +6,8 @@ export class Music {
   public name: string;
   public yearReleased: string;
   public length: number;
+  public artistID: number;
+  public genreID: number;
   public artist: Artist;
-  public genreId: number;
   public genre: Genre;
 }

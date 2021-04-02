@@ -14,10 +14,12 @@ namespace Database_Project.Database.DatabaseModels
         public string Name { get; set; }
         public string YearReleased { get; set; }
         public int Length { get; set; } // Int or string?
+        public int ArtistID { get; set; }
         [ForeignKey("ArtistID")]
         public Artist Artist { get; set; }
 
         public int GenreID { get; set; }
+        [ForeignKey("GenreID")]
         public Genre Genre { get; set; }
     }
 }

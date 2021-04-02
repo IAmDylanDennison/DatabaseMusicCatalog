@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-table',
@@ -7,26 +8,29 @@ import { Observable } from 'rxjs';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  @Input() observable: Observable<any>;
-  elements: any;
+  //@Input() observable: Observable<any>;
+  @Input() elements: Array<object>;
+  @Output() elementClicked = new EventEmitter<object>();
+  @Input() title?: string;
+
+  headers: Array<string>;
+  headerNames: Array<string> = ['ID', 'Name', 'Year', 'Length']
   page = 1;
   count = 0;
-  tableSize = 7;
+  tableSize = 3;
   tableSizes = [3, 6, 9, 12];
 
   constructor() { }
 
   ngOnInit() {
-    this.fetch();
+    this.headers = Object.keys(this.elements[0]).filter(x =>
+      x != "artist" &&
+      x != "genre"
+      && x != "artistID"
+      && x != "genreID");
   }
 
-  fetch(): void {
-    this.observable.subscribe(x => {
-      this.elements = x;
-    });
-  }
-
-  onTableDataChange(event) {
+  onTableDataChange(event) { 
     this.page = event;
   }
 
@@ -35,4 +39,7 @@ export class TableComponent implements OnInit {
     this.page = 1;
   }
 
+  updateElement(element: object): void {
+    this.elementClicked.emit(element);
+  }
 }
