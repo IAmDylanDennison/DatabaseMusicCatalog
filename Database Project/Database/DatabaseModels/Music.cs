@@ -31,6 +31,7 @@ namespace Database_Project.Database.DatabaseModels
             Length = x.Length;
             GenreID = x.GenreID;
             Genre = x.Genre;
+            ArtistID = x.ArtistID;
             Artist = new Artist()
             {
                 ArtistID = x.Artist.ArtistID,

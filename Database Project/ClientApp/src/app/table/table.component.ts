@@ -40,6 +40,7 @@ export class TableComponent implements OnInit {
   }
 
   updateElement(element: object): void {
+    console.log("song: ", element);
     this.elementClicked.emit(element);
   }
 }

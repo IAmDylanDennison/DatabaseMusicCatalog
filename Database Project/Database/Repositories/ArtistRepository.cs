@@ -38,6 +38,7 @@ namespace Database_Project.Database.Repositories
             return _context.Artist
                 .Include(x => x.Genre)
                 .Include(x => x.ArtistMusic)
+                .Select(x => new Artist(x))
                 .ToList();
         }
     }

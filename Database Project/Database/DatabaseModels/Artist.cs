@@ -25,6 +25,7 @@ namespace Database_Project.Database.DatabaseModels
             Name = x.Name;
             GenreID = x.GenreID;
             Genre = x.Genre;
+            ArtistMusic = new List<Music>();
             foreach (var music in x.ArtistMusic)
             {
                 ArtistMusic.Add(new Music()

@@ -48,9 +48,9 @@ namespace Database_Project.Database.Repositories
             return _context.Music
                 .Include(m => m.Artist)
                 .Include(m => m.Genre)
+                .Where(x => x.MusicId == id)
                 .Select(x => new Music(x))
-                .IgnoreAutoIncludes()
-                .Where(x => x.MusicId == id).FirstOrDefault();
+                .FirstOrDefault();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Database_Project.Controllers
             return _musicRepository.GetAll();
         }
 
-        [HttpGet("song/{{id}}")]
+        [HttpGet("song/{id}")]
         public ActionResult<Music> GetSong(int id)
         {
             return _musicRepository.GetById(id);

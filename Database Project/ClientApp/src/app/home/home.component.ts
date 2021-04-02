@@ -33,7 +33,8 @@ export class HomeComponent {
     });
   }
 
-  addMusic(music: Music) {
-    this.router.navigateByUrl('song/' + music.musicId);
+  updateElement(element: Music) {
+    console.log("element: ", element);
+    this.router.navigateByUrl('song/' + element.musicId);
   }
 }
