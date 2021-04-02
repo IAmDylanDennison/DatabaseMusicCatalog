@@ -36,5 +36,10 @@ namespace Database_Project.Database.Repositories
         {
             return _context.Music.ToList();
         }
+
+        public Music GetById(int id)
+        {
+            return _context.Music.Where(x => x.MusicId == id).FirstOrDefault();
+        }
     }
 }

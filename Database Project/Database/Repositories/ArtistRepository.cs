@@ -31,5 +31,10 @@ namespace Database_Project.Database.Repositories
             _context.Artist.Remove(artist);
             _context.SaveChanges();
         }
+
+        public List<Artist> GetAll()
+        {
+            return _context.Artist.ToList();
+        }
     }
 }

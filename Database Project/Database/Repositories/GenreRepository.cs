@@ -31,5 +31,10 @@ namespace Database_Project.Database.Repositories
             _context.Genre.Remove(genre);
             _context.SaveChanges();
         }
+
+        public List<Genre> GetAll()
+        {
+            return _context.Genre.ToList();
+        }
     }
 }

@@ -54,6 +54,7 @@ namespace Database_Project
             services.AddTransient<UserRepository>();
             services.AddTransient<ArtistRepository>();
             services.AddTransient<GenreRepository>();
+            services.AddTransient<MusicRepository>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

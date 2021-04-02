@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Database_Project.Database.DatabaseModels;
 using Database_Project.Database.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,12 @@ namespace Database_Project.Controllers
         public GenreController(GenreRepository genreRepository)
         {
             _genreRepository = genreRepository;
+        }
+
+        [HttpGet]
+        public ActionResult<List<Genre>> Get()
+        {
+            return _genreRepository.GetAll();
         }
     }
 }
