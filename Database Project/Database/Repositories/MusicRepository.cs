@@ -1,4 +1,5 @@
 ﻿using Database_Project.Database.DatabaseModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,12 +35,22 @@ namespace Database_Project.Database.Repositories
 
         public List<Music> GetAll()
         {
-            return _context.Music.ToList();
+            return _context.Music
+                .Include(m => m.Genre)
+                .Include(m => m.Artist)
+                .Select(x => new Music(x))
+                .IgnoreAutoIncludes()
+                .ToList();
         }
 
         public Music GetById(int id)
         {
-            return _context.Music.Where(x => x.MusicId == id).FirstOrDefault();
+            return _context.Music
+                .Include(m => m.Artist)
+                .Include(m => m.Genre)
+                .Select(x => new Music(x))
+                .IgnoreAutoIncludes()
+                .Where(x => x.MusicId == id).FirstOrDefault();
         }
     }
 }

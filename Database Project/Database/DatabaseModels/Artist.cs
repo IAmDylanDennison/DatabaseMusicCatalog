@@ -17,5 +17,29 @@ namespace Database_Project.Database.DatabaseModels
         [ForeignKey("GenreID")] 
         public Genre Genre { get; set; }
         // Image
+        public List<Music> ArtistMusic { get; set; }
+
+        public Artist(Artist x)
+        {
+            ArtistID = x.ArtistID;
+            Name = x.Name;
+            GenreID = x.GenreID;
+            Genre = x.Genre;
+            foreach (var music in x.ArtistMusic)
+            {
+                ArtistMusic.Add(new Music()
+                {
+                    MusicId = music.MusicId,
+                    ArtistID = ArtistID,
+                    Genre = music.Genre,
+                    GenreID = music.GenreID,
+                    Length = music.Length,
+                    Name = music.Name,
+                    YearReleased = music.YearReleased
+                });
+            }
+        }
+
+        public Artist() { }
     }
 }

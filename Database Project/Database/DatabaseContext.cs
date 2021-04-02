@@ -26,5 +26,33 @@ namespace Database_Project.Database
         public DbSet<UserArtist> UserArtist { get; set; }
         public DbSet<UserMusic> UserMusic { get; set; }
         public DbSet<UserGenre> UserGenre { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasMany(c => c.UserArtists);
+            modelBuilder.Entity<User>()
+                .HasMany(c => c.UserMusic);
+            modelBuilder.Entity<User>()
+                .HasMany(c => c.UserGenres);
+
+            modelBuilder.Entity<Music>()
+                .HasOne(c => c.Artist);
+            modelBuilder.Entity<Music>()
+                .HasOne(c => c.Genre);
+
+            modelBuilder.Entity<Artist>()
+                .HasOne(c => c.Genre);
+            modelBuilder.Entity<Artist>()
+                .HasMany(c => c.ArtistMusic);
+
+
+            modelBuilder.Entity<UserMusic>()
+                .HasOne(c => c.Music);
+            modelBuilder.Entity<UserGenre>()
+                .HasOne(c => c.Genre);
+            modelBuilder.Entity<UserArtist>()
+                .HasOne(c => c.Artist);
+        }
     }
 }

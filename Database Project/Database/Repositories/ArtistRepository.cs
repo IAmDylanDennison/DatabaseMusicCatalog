@@ -1,4 +1,5 @@
 ﻿using Database_Project.Database.DatabaseModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,10 @@ namespace Database_Project.Database.Repositories
 
         public List<Artist> GetAll()
         {
-            return _context.Artist.ToList();
+            return _context.Artist
+                .Include(x => x.Genre)
+                .Include(x => x.ArtistMusic)
+                .ToList();
         }
     }
 }

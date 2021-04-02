@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Database_Project.Database.DatabaseModels
@@ -21,5 +22,24 @@ namespace Database_Project.Database.DatabaseModels
         public int GenreID { get; set; }
         [ForeignKey("GenreID")]
         public Genre Genre { get; set; }
+
+        public Music(Music x)
+        {
+            MusicId = x.MusicId;
+            Name = x.Name;
+            YearReleased = x.YearReleased;
+            Length = x.Length;
+            GenreID = x.GenreID;
+            Genre = x.Genre;
+            Artist = new Artist()
+            {
+                ArtistID = x.Artist.ArtistID,
+                Genre = x.Artist.Genre,
+                GenreID = x.Artist.GenreID,
+                Name = x.Artist.Name
+            };
+        }
+
+        public Music() { }
     }
 }

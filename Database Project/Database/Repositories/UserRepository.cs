@@ -1,4 +1,5 @@
 ﻿using Database_Project.Database.DatabaseModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,15 @@ namespace Database_Project.Database.Repositories
 
         public User GetUser(string email)
         {
-            return _context.User.Where(x => x.Email == email).FirstOrDefault();
+            return _context.User
+                .Where(x => x.Email == email)
+                .Include(x => x.UserArtists)
+                .ThenInclude(x => x.Artist)
+                .Include(x => x.UserMusic)
+                .ThenInclude(x => x.Music)
+                .Include(x => x.UserGenres)
+                .ThenInclude(x => x.Genre)
+                .FirstOrDefault();
         }
 
         public void UpdateUser(User user)
@@ -72,5 +81,7 @@ namespace Database_Project.Database.Repositories
             _context.UserMusic.Add(userMusic);
             _context.SaveChanges();
         }
+        
+
     }
 }
