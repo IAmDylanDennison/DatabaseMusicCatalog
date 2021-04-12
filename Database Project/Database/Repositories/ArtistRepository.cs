@@ -41,5 +41,16 @@ namespace Database_Project.Database.Repositories
                 .Select(x => new Artist(x))
                 .ToList();
         }
+
+        public Artist GetById(int id)
+        {
+            return _context.Artist
+                .Include(m => m.ArtistMusic)
+                .Include(m => m.Genre)
+                .Where(x => x.ArtistID == id)
+                .Select(x => new Artist(x))
+                .AsNoTracking()
+                .FirstOrDefault();
+        }
     }
 }

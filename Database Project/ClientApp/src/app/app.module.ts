@@ -6,18 +6,22 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { HomeComponent } from './Components/home/home.component';
+import { CounterComponent } from './Components/counter/counter.component';
+import { FetchDataComponent } from './Components/fetch-data/fetch-data.component';
+import { LoginPageComponent } from './Components/login-page/login-page.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AuthInterceptor } from './security/auth-interceptor';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { TableComponent } from './table/table.component';
-import { SongComponent } from './song/song.component';
+import { TableComponent } from './Components/table/table.component';
+import { SongComponent } from './Components/song/song.component';
+import { ArtistsComponent } from './Components/artists/artists.component';
+import { GenresComponent } from './Components/genres/genres.component';
+import { IndividualArtistComponent } from './Components/individual-artist/individual-artist.component';
+import { IndividualGenreComponent } from './Components/individual-genre/individual-genre.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { SongComponent } from './song/song.component';
     LoginPageComponent,
     SignUpComponent,
     TableComponent,
-    SongComponent
+    SongComponent,
+    ArtistsComponent,
+    GenresComponent,
+    IndividualArtistComponent,
+    IndividualGenreComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -41,7 +49,10 @@ import { SongComponent } from './song/song.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login', component: LoginPageComponent },
       { path: 'signup', component: SignUpComponent },
-      { path: 'song/:id', component: SongComponent }
+      { path: 'song/:id', component: SongComponent },
+      { path: 'artists', component: ArtistsComponent },
+      { path: 'artist/:id', component: IndividualArtistComponent },
+      { path: 'genres', component: GenresComponent }  
     ]),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

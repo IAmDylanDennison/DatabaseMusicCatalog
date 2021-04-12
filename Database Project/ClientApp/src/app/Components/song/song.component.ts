@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Music } from '../models/music';
-import { MusicService } from '../services/music.service';
+import { Music } from '../../models/music';
+import { MusicService } from '../../services/music.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { error } from '@angular/compiler/src/util';
-import { GenreService } from '../services/genre.service';
-import { ArtistService } from '../services/artist.service';
-import { Genre } from '../models/genre';
-import { Artist } from '../models/artist';
+import { GenreService } from '../../services/genre.service';
+import { ArtistService } from '../../services/artist.service';
+import { Genre } from '../../models/genre';
+import { Artist } from '../../models/artist';
 
 @Component({
   selector: 'app-song',
@@ -30,7 +30,6 @@ export class SongComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.id = parseInt(params.get('id'));
-      console.log("id: ", this.id);
     });
     this.adding = this.id === -1;
     
@@ -51,7 +50,6 @@ export class SongComponent implements OnInit {
     var subscription = this.adding ?
       this.musicService.addMusic(this.song) :
       this.musicService.updateMusic(this.song);
-    console.log("song: ", this.song);
     subscription.subscribe(x => {
       this.loading = false;
       this.router.navigateByUrl('');

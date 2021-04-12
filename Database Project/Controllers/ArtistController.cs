@@ -24,5 +24,25 @@ namespace Database_Project.Controllers
         {
             return _artistRepository.GetAll();
         }
+
+        [HttpGet("artist/{id}")]
+        public ActionResult<Artist> GetArtist(int id)
+        {
+            return _artistRepository.GetById(id);
+        }
+
+        [HttpPost]
+        public ActionResult AddArtist(Artist artist)
+        {
+            _artistRepository.AddArtist(artist);
+            return Ok();
+        }
+
+        [HttpPost("update")]
+        public ActionResult UpdateMusic(Artist music)
+        {
+            _artistRepository.UpdateArtist(music);
+            return Ok();
+        }
     }
 }

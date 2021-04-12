@@ -1,0 +1,5 @@
+<a [routerLink]="['../artist', -1]">Add Artist</a>
+<app-table *ngIf="artists"
+           [elements]="artists"
+           (elementClicked)="updateElement($event)"
+           [title]="Artists"></app-table>

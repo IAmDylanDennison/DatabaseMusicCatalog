@@ -14,7 +14,7 @@ export class TableComponent implements OnInit {
   @Input() title?: string;
 
   headers: Array<string>;
-  headerNames: Array<string> = ['ID', 'Name', 'Year', 'Length']
+  headerNames: Array<string>;
   page = 1;
   count = 0;
   tableSize = 3;
@@ -27,7 +27,10 @@ export class TableComponent implements OnInit {
       x != "artist" &&
       x != "genre"
       && x != "artistID"
-      && x != "genreID");
+      && x != "genreID"
+      && x != "artistMusic");
+    console.log("headers: ", this.headers);
+    this.headerNames = this.headers;
   }
 
   onTableDataChange(event) { 

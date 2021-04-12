@@ -5,12 +5,15 @@
     <input [(ngModel)]="song.yearReleased" type="text" name="yearReleased" placeholder="Year Released" />
     <br />
     <input [(ngModel)]="song.length" type="number" name="length" placeholder="Song length" />
+    <br />
     <select [(ngModel)]="song.artistID" name="artist">
       <option *ngFor="let artist of artists" [ngValue]="artist.artistID">{{artist.name}}</option>
     </select>
+    <br />
     <select [(ngModel)]="song.genreID" name="genre">
       <option *ngFor="let genre of genres" [ngValue]="genre.genreID">{{genre.name}}</option>
     </select>
+    <br />
     <button (click)="addOrUpdateSong()" type="submit">
       <span *ngIf="adding">Add</span>
       <span *ngIf="!adding">Update</span>
@@ -20,7 +23,7 @@
 
 
 
-  <a routerLink="../home">Go back</a>
+  <a routerLink="'/'">Go back</a>
 </div>
 <div *ngIf="loading" class="spinner-border" role="status">
   <span class="sr-only">Loading...</span>

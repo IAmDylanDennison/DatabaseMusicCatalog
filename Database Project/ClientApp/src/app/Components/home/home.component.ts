@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { User } from '../models/user';
-import { AuthService } from '../services/auth-service.service';
+import { User } from '../../models/user';
+import { AuthService } from '../../services/auth-service.service';
 import { Router } from '@angular/router';
-import { MusicService } from '../services/music.service';
-import { Music } from '../models/music';
+import { MusicService } from '../../services/music.service';
+import { Music } from '../../models/music';
 
 @Component({
   selector: 'app-home',
@@ -28,13 +28,11 @@ export class HomeComponent {
     );
 
     this.musicService.getAllMusic().subscribe(music => {
-      console.log("elements: ", music);
       this.elements = music;
     });
   }
 
   updateElement(element: Music) {
-    console.log("element: ", element);
     this.router.navigateByUrl('song/' + element.musicId);
   }
 }

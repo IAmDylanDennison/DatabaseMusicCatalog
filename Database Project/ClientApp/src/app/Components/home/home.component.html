@@ -1,6 +1,7 @@
 <div *ngIf="currentUser">
   <h1>Hello, {{ currentUser.firstName }} {{ currentUser.lastName }} </h1>
   <a [routerLink]="['song', -1]">Add music</a>
+  <br />
   <app-table *ngIf="elements" [elements]="elements"
              (elementClicked)="updateElement($event)"
              [title]="'Music'"></app-table>
