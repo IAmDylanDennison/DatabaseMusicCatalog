@@ -26,8 +26,9 @@
                 totalItems: count
               };
         let i = index" [class.active]="i == currentIndex">
-        <td *ngFor="let key of headers">
-          {{element[key]}}
+        <td *ngFor="let key of headers; let k = index">
+          <a [routerLink]="[individualUrl, element[primaryKey]]" *ngIf="k === 0">{{element[key]}}</a>
+          <div *ngIf="k != 0">{{element[key]}}</div>
         </td>
         <td><button (click)="updateElement(element)"></button></td>
       </tr>

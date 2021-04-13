@@ -12,6 +12,8 @@ export class TableComponent implements OnInit {
   @Input() elements: Array<object>;
   @Output() elementClicked = new EventEmitter<object>();
   @Input() title?: string;
+  @Input() individualUrl?: string;
+  @Input() primaryKey?: string;
 
   headers: Array<string>;
   headerNames: Array<string>;
@@ -28,8 +30,8 @@ export class TableComponent implements OnInit {
       x != "genre"
       && x != "artistID"
       && x != "genreID"
-      && x != "artistMusic");
-    console.log("headers: ", this.headers);
+      && x != "artistMusic"
+      && x != "musicId");
     this.headerNames = this.headers;
   }
 
@@ -43,7 +45,6 @@ export class TableComponent implements OnInit {
   }
 
   updateElement(element: object): void {
-    console.log("song: ", element);
     this.elementClicked.emit(element);
   }
 }

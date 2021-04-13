@@ -30,7 +30,6 @@ export class IndividualArtistComponent implements OnInit {
 
     if (!this.adding)
       this.artistService.getById(this.id).subscribe(a => {
-        console.log("artist: ", a);
         this.artist = a;
       }
       );

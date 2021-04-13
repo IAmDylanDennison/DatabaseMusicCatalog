@@ -52,7 +52,8 @@ import { IndividualGenreComponent } from './Components/individual-genre/individu
       { path: 'song/:id', component: SongComponent },
       { path: 'artists', component: ArtistsComponent },
       { path: 'artist/:id', component: IndividualArtistComponent },
-      { path: 'genres', component: GenresComponent }  
+      { path: 'genres', component: GenresComponent },
+      { path: 'genre/:id', component: IndividualGenreComponent }
     ]),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

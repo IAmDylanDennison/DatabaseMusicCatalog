@@ -25,5 +25,25 @@ namespace Database_Project.Controllers
         {
             return _genreRepository.GetAll();
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<Genre> Get(int id)
+        {
+            return _genreRepository.Get(id);
+        }
+
+        [HttpPost("update")]
+        public ActionResult Update(Genre genre)
+        {
+            _genreRepository.UpdateGenre(genre);
+            return Ok();
+        }
+
+        [HttpPost("add")]
+        public ActionResult Add(Genre genre)
+        {
+            _genreRepository.AddGenre(genre);
+            return Ok();
+        }
     }
 }

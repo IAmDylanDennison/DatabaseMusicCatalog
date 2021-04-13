@@ -13,4 +13,16 @@ export class GenreService {
   getAll(): Observable<Array<Genre>> {
     return this.http.get<Array<Genre>>('/api/genre');
   }
+
+  get(id: number): Observable<Genre> {
+    return this.http.get<Genre>('/api/genre/' + id);
+  }
+
+  update(genre: Genre): Observable<void> {
+    return this.http.post<void>('/api/genre/update', genre);
+  }
+
+  add(genre: Genre): Observable<void> {
+    return this.http.post<void>('/api/genre/add', genre);
+  }
 }

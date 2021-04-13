@@ -1,1 +1,14 @@
-<p>individual-genre works!</p>
+<div *ngIf="!loading">
+  <form>
+    <input [(ngModel)]="genre.name" type="text" name="name" placeholder="Genre Name" />
+    <button (click)="addOrUpdateGenre()" type="submit">
+      <span *ngIf="adding">Add</span>
+      <span *ngIf="!adding">Update</span>
+    </button>
+  </form>
+</div>
+<div *ngIf="loading" class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+
+<a [routerLink]="['../../genres']">Go back</a>

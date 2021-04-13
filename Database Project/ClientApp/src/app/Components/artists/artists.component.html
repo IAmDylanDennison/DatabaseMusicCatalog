@@ -2,4 +2,6 @@
 <app-table *ngIf="artists"
            [elements]="artists"
            (elementClicked)="updateElement($event)"
-           [title]="Artists"></app-table>
+           [title]="Artists"
+           [individualUrl]="'../artist'"
+           [primaryKey]="'artistID'"></app-table>

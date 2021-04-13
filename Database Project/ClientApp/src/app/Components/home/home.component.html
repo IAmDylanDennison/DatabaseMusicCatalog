@@ -4,5 +4,7 @@
   <br />
   <app-table *ngIf="elements" [elements]="elements"
              (elementClicked)="updateElement($event)"
-             [title]="'Music'"></app-table>
+             [title]="'Music'"
+             [individualUrl]="'song'"
+             [primaryKey]="'musicId'"></app-table>
 </div>

@@ -36,5 +36,10 @@ namespace Database_Project.Database.Repositories
         {
             return _context.Genre.ToList();
         }
+
+        public Genre Get(int id)
+        {
+            return _context.Genre.Find(id);
+        }
     }
 }
