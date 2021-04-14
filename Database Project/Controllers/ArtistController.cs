@@ -44,5 +44,12 @@ namespace Database_Project.Controllers
             _artistRepository.UpdateArtist(music);
             return Ok();
         }
+
+        [HttpPost("delete")]
+        public ActionResult DeleteArtist(Artist artist)
+        {
+            _artistRepository.DeleteArtist(artist);
+            return Ok();
+        }
     }
 }

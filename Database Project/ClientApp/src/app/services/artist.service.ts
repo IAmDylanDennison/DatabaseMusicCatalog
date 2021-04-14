@@ -26,4 +26,8 @@ export class ArtistService {
   updateArtist(artist: Artist): Observable<void> {
     return this.http.post<void>('/api/artist/update', artist);
   }
+
+  deleteArtist(artist: Artist): Observable<void> {
+    return this.http.post<void>('/api/artist/delete', artist);
+  }
 }

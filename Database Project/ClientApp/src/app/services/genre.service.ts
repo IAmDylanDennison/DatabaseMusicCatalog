@@ -25,4 +25,8 @@ export class GenreService {
   add(genre: Genre): Observable<void> {
     return this.http.post<void>('/api/genre/add', genre);
   }
+
+  delete(genre: Genre): Observable<void> {
+    return this.http.post<void>('/api/genre/delete', genre);
+  }
 }

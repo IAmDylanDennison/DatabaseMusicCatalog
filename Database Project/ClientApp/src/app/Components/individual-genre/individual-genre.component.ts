@@ -46,4 +46,8 @@ export class IndividualGenreComponent implements OnInit {
     },
     err => this.loading = false)
   }
+
+  delete() {
+    this.genreService.delete(this.genre).subscribe(x => this.router.navigateByUrl('genres'));
+  }
 }

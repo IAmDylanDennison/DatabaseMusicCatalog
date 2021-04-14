@@ -18,6 +18,7 @@
       <span *ngIf="adding">Add</span>
       <span *ngIf="!adding">Update</span>
     </button>
+    <button *ngIf="!adding" (click)="delete()">Delete</button>
     <br />
   </form>
 

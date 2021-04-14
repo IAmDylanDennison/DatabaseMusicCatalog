@@ -5,6 +5,7 @@
       <span *ngIf="adding">Add</span>
       <span *ngIf="!adding">Update</span>
     </button>
+    <button *ngIf="!adding" (click)="delete()">Delete</button>
   </form>
 </div>
 <div *ngIf="loading" class="spinner-border" role="status">

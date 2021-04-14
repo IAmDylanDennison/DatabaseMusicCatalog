@@ -50,4 +50,8 @@ export class IndividualArtistComponent implements OnInit {
     },
     err => this.loading = false)
   }
+
+  delete() {
+    this.artistService.deleteArtist(this.artist).subscribe(x => this.router.navigateByUrl('artists'));
+  }
 }

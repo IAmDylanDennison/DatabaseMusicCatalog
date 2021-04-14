@@ -58,5 +58,12 @@ namespace Database_Project.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPost("delete")]
+        public ActionResult Delete(Music music)
+        {
+            _musicRepository.DeleteMusic(music);
+            return Ok();
+        }
     }
 }

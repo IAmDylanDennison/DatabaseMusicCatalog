@@ -56,4 +56,8 @@ export class SongComponent implements OnInit {
     },
     err => this.loading = false);
   }
+
+  delete() {
+    this.musicService.delete(this.song).subscribe(x => this.router.navigateByUrl(''));
+  }
 }

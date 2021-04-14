@@ -25,4 +25,8 @@ export class MusicService {
   getById(id: number): Observable<Music> {
     return this.http.get<Music>('/api/music/song/' + id);
   }
+
+  delete(music: Music): Observable<void> {
+    return this.http.post<void>('/api/music/delete', music);
+  }
 }

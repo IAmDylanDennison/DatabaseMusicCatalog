@@ -45,5 +45,12 @@ namespace Database_Project.Controllers
             _genreRepository.AddGenre(genre);
             return Ok();
         }
+
+        [HttpPost("delete")]
+        public ActionResult Delete(Genre genre)
+        {
+            _genreRepository.DeleteGenre(genre);
+            return Ok();
+        }
     }
 }
