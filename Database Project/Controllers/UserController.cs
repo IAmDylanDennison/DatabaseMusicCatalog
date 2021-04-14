@@ -47,5 +47,45 @@ namespace Database_Project.Controllers
             }
             return Ok(user);
         }
+
+        [HttpPost("like/music")]
+        public ActionResult LikeMusic(UserMusic likedMusic)
+        {
+            _userRepository.AddUserMusic(likedMusic);
+            return Ok();
+        }
+
+        [HttpPost("like/artist")]
+        public ActionResult LikeArtist(UserArtist userArtist)
+        {
+            _userRepository.AddUserArtist(userArtist);
+            return Ok();
+        }
+
+        [HttpPost("like/genre")]
+        public ActionResult LikeGenre(UserGenre userGenre)
+        {
+            _userRepository.AddUserGenre(userGenre);
+            return Ok();
+        }
+
+        [HttpGet("get/genre/{uid}")]
+        public ActionResult<List<UserGenre>> GetUserGenre(int uid)
+        {
+            var usergenres = _userRepository.GetUserGenres(uid);
+            return usergenres;
+        }
+
+        [HttpGet("get/artist/{uid}")]
+        public ActionResult<List<UserArtist>> GetUserArtist(int uid)
+        {
+            return _userRepository.GetUserArtists(uid);
+        }
+
+        [HttpGet("get/music/{uid}")]
+        public ActionResult<List<UserMusic>> GetUserMusic(int uid)
+        {
+            return _userRepository.GetUserMusic(uid);
+        }
     }
 }

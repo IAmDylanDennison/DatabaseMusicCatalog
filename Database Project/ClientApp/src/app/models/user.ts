@@ -3,7 +3,7 @@ import { UserArtist } from "./userArtist";
 import { UserGenre } from "./userGenre";
 
 export class User {
-  public UID: number;
+  public uid: number;
   public firstName: string;
   public lastName: string;
   public email: string;

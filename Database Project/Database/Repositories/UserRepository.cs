@@ -46,42 +46,37 @@ namespace Database_Project.Database.Repositories
             _context.SaveChanges();
         }
 
-        public void AddUserGenre(Genre genre, User user) // test to make sure works
+        public void AddUserGenre(UserGenre userGenre) // test to make sure works
         {
-            var userGenre = new UserGenre()
-            {
-                Genre = genre,
-                UserUID = user.UID
-            };
-
             _context.UserGenre.Add(userGenre);
             _context.SaveChanges();
         }
 
-        public void AddUserArtist(Artist artist, User user)
+        public void AddUserArtist(UserArtist userArtist)
         {
-            var userArtist = new UserArtist()
-            {
-                Artist = artist,
-                UserUID = user.UID
-            };
-
             _context.UserArtist.Add(userArtist);
             _context.SaveChanges();
         }
 
-        public void AddUserMusic(Music music, User user)
+        public void AddUserMusic(UserMusic userMusic)
         {
-            var userMusic = new UserMusic()
-            {
-                Music = music,
-                UserUID = user.UID
-            };
-
             _context.UserMusic.Add(userMusic);
             _context.SaveChanges();
         }
         
+        public List<UserGenre> GetUserGenres(int uid)
+        {
+            return _context.UserGenre.Where(x => x.UserUID == uid).ToList();
+        }
 
+        public List<UserArtist> GetUserArtists(int uid)
+        {
+            return _context.UserArtist.Where(x => x.UserUID == uid).ToList();
+        }
+
+        public List<UserMusic> GetUserMusic(int uid)
+        {
+            return _context.UserMusic.Where(x => x.UserUID == uid).ToList();
+        }
     }
 }

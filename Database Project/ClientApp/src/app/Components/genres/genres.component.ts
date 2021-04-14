@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Genre } from '../../models/genre';
 import { GenreService } from '../../services/genre.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user-service.service';
+import { UserGenre } from '../../models/userGenre';
+import { AuthService } from '../../services/auth-service.service';
 
 @Component({
   selector: 'app-genres',
@@ -11,7 +14,10 @@ import { Router } from '@angular/router';
 export class GenresComponent implements OnInit {
   genres: Array<Genre>;
 
-  constructor(private genreService: GenreService, private router: Router) { }
+  constructor(private genreService: GenreService,
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.genreService.getAll().subscribe(x =>
@@ -20,6 +26,8 @@ export class GenresComponent implements OnInit {
   }
 
   updateElement(element: Genre) {
-    this.router.navigateByUrl('genre/' + element.genreID);
+    this.userService.likeGenre(element, this.authService.user$.value.uid).subscribe(x =>
+      this.router.navigate([''])
+      );
   }
 }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ArtistService } from '../../services/artist.service';
 import { Artist } from '../../models/artist';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user-service.service';
+import { AuthService } from '../../services/auth-service.service';
+import { UserArtist } from '../../models/userArtist';
 
 @Component({
   selector: 'app-artists',
@@ -11,7 +14,10 @@ import { Router } from '@angular/router';
 export class ArtistsComponent implements OnInit {
   artists: Array<Artist>;
 
-  constructor(private artistService: ArtistService, private router: Router) { }
+  constructor(private artistService: ArtistService,
+    private router: Router,
+    private userService: UserService,
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.artistService.getAll().subscribe(x => {
@@ -20,7 +26,8 @@ export class ArtistsComponent implements OnInit {
   }
 
   updateElement(element: Artist) {
-    this.router.navigateByUrl('artist/' + element.artistID);
+    this.userService.likeArtist(element, this.auth.user$.value.uid).subscribe(x =>
+      this.router.navigate([''])
+    );
   }
-
 }
