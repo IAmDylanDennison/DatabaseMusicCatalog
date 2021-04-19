@@ -22,6 +22,7 @@ import { ArtistsComponent } from './Components/artists/artists.component';
 import { GenresComponent } from './Components/genres/genres.component';
 import { IndividualArtistComponent } from './Components/individual-artist/individual-artist.component';
 import { IndividualGenreComponent } from './Components/individual-genre/individual-genre.component';
+import { UserLikePageComponent } from './Components/user-like-page/user-like-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { IndividualGenreComponent } from './Components/individual-genre/individu
     ArtistsComponent,
     GenresComponent,
     IndividualArtistComponent,
-    IndividualGenreComponent
+    IndividualGenreComponent,
+    UserLikePageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -53,7 +55,8 @@ import { IndividualGenreComponent } from './Components/individual-genre/individu
       { path: 'artists', component: ArtistsComponent },
       { path: 'artist/:id', component: IndividualArtistComponent },
       { path: 'genres', component: GenresComponent },
-      { path: 'genre/:id', component: IndividualGenreComponent }
+      { path: 'genre/:id', component: IndividualGenreComponent },
+      { path: 'likes', component: UserLikePageComponent }
     ]),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

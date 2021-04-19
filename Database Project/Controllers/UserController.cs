@@ -39,7 +39,10 @@ namespace Database_Project.Controllers
         {
             try
             {
-                _userRepository.AddUser(user);
+                if (_userRepository.GetUser(user.Email) == null)
+                    _userRepository.AddUser(user);
+                else
+                    return BadRequest();
             }
             catch (Exception e)
             {
@@ -66,6 +69,27 @@ namespace Database_Project.Controllers
         public ActionResult LikeGenre(UserGenre userGenre)
         {
             _userRepository.AddUserGenre(userGenre);
+            return Ok();
+        }
+
+        [HttpPost("dislike/music")]
+        public ActionResult DislikeMusic(UserMusic song)
+        {
+            _userRepository.DeleteUserMusic(song);
+            return Ok();
+        }
+
+        [HttpPost("dislike/genre")]
+        public ActionResult DislikeGenre(UserGenre genre)
+        {
+            _userRepository.DeleteUserGenre(genre);
+            return Ok();
+        }
+
+        [HttpPost("dislike/artist")]
+        public ActionResult DislikeArtist(UserArtist artist)
+        {
+            _userRepository.DeleteUserArtist(artist);
             return Ok();
         }
 

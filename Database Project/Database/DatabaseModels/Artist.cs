@@ -26,19 +26,20 @@ namespace Database_Project.Database.DatabaseModels
             GenreID = x.GenreID;
             Genre = x.Genre;
             ArtistMusic = new List<Music>();
-            foreach (var music in x.ArtistMusic)
-            {
-                ArtistMusic.Add(new Music()
+            if (x.ArtistMusic != null)
+                foreach (var music in x.ArtistMusic)
                 {
-                    MusicId = music.MusicId,
-                    ArtistID = ArtistID,
-                    Genre = music.Genre,
-                    GenreID = music.GenreID,
-                    Length = music.Length,
-                    Name = music.Name,
-                    YearReleased = music.YearReleased
-                });
-            }
+                    ArtistMusic.Add(new Music()
+                    {
+                        MusicId = music.MusicId,
+                        ArtistID = ArtistID,
+                        Genre = music.Genre,
+                        GenreID = music.GenreID,
+                        Length = music.Length,
+                        Name = music.Name,
+                        YearReleased = music.YearReleased
+                    });
+                }
         }
 
         public Artist() { }

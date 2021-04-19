@@ -14,8 +14,6 @@ import { Artist } from '../models/artist';
   providedIn: 'root'
 })
 export class UserService {
-  userUid: number = 0;
-
   constructor(private http: HttpClient) {
   }
 
@@ -51,15 +49,24 @@ export class UserService {
     return this.http.post<void>('/api/user/like/artist', userArtist);
   }
 
-  getUserMusic(): Observable<Array<UserMusic>> {
-    return this.http.get<Array<UserMusic>>('/api/user/get/music/' + this.userUid);
+  dislikeMusic(music: Music, uid: number) {
+    var userMusic = new UserMusic;
+    userMusic.musicId = music.musicId;
+    userMusic.userUID = uid;
+    return this.http.post<void>('/api/user/dislike/music', userMusic);
   }
 
-  getUserArtist(): Observable<Array<UserArtist>> {
-    return this.http.get<Array<UserArtist>>('/api/user/get/artist' + this.userUid);
+  dislikeGenre(genre: Genre, uid: number): Observable<void> {
+    var userGenre = new UserGenre;
+    userGenre.genreID = genre.genreID;
+    userGenre.userUID = uid;
+    return this.http.post<void>('/api/user/dislike/genre', userGenre);
   }
 
-  getUserGenre(): Observable<Array<UserGenre>> {
-    return this.http.get<Array<UserGenre>>('/api/user/get/genre' + this.userUid);
+  dislikeArtist(artist: Artist, uid: number): Observable<void> {
+    var userArtist = new UserArtist;
+    userArtist.artistID = artist.artistID;
+    userArtist.userUID = uid;
+    return this.http.post<void>('/api/user/dislike/artist', userArtist);
   }
 }

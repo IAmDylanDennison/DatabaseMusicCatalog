@@ -20,6 +20,11 @@ export class AuthService {
     });
   }
 
+  refreshUser() {
+    this.userService.getUser(this.user$.value.email).subscribe(user =>
+      this.user$.next(user)
+      );
+  }
 
   configureAuthState(firebaseUser: firebase.default.User) {
     if (firebaseUser) {
@@ -55,6 +60,7 @@ export class AuthService {
   }
 
   logout(): Promise<void> {
+    localStorage.removeItem("jwt");
     return this.angularAuth.signOut();
   }
 

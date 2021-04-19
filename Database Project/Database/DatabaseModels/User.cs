@@ -22,5 +22,24 @@ namespace Database_Project.Database.DatabaseModels
         public List<UserArtist> UserArtists { get; set; }
         public List<UserGenre> UserGenres { get; set; }
         public string Bio { get; set; }
+
+        public User(User x)
+        {
+            UID = x.UID;
+            FirstName = x.FirstName;
+            LastName = x.LastName;
+            Email = x.Email;
+            UserMusic = new List<UserMusic>();
+            foreach (var song in x.UserMusic)
+                UserMusic.Add(new UserMusic(song));
+
+            UserArtists = new List<UserArtist>();
+            foreach (var artist in x.UserArtists)
+                UserArtists.Add(new UserArtist(artist));
+
+            UserGenres = x.UserGenres;
+        }
+
+        public User() { }
     }
 }

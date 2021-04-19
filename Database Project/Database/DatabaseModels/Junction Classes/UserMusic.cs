@@ -16,5 +16,15 @@ namespace Database_Project.Database.DatabaseModels
 
         public int MusicId { get; set; }
         public Music Music { get; set; }
+
+        public UserMusic(UserMusic x)
+        {
+            UserMusicID = x.UserMusicID;
+            UserUID = x.UserUID;
+            MusicId = x.MusicId;
+            Music = new Music(x.Music);
+        }
+
+        public UserMusic() { }
     }
 }

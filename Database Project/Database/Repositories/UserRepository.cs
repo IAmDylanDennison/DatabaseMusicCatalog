@@ -25,6 +25,7 @@ namespace Database_Project.Database.Repositories
                 .ThenInclude(x => x.Music)
                 .Include(x => x.UserGenres)
                 .ThenInclude(x => x.Genre)
+                .Select(x => new User(x))
                 .FirstOrDefault();
         }
 
@@ -77,6 +78,36 @@ namespace Database_Project.Database.Repositories
         public List<UserMusic> GetUserMusic(int uid)
         {
             return _context.UserMusic.Where(x => x.UserUID == uid).ToList();
+        }
+
+        public void DeleteUserMusic(UserMusic userMusic)
+        {
+            var toRemove = _context.UserMusic
+                .Where(x => x.MusicId == userMusic.MusicId
+                && x.UserUID == userMusic.UserUID)
+                .FirstOrDefault();
+            _context.UserMusic.Remove(toRemove);
+            _context.SaveChanges();
+        }
+
+        public void DeleteUserArtist(UserArtist userArtist)
+        {
+            var toRemove = _context.UserArtist
+                .Where(x => x.ArtistID == userArtist.ArtistID
+                && x.UserUID == userArtist.UserUID)
+                .FirstOrDefault();
+            _context.UserArtist.Remove(toRemove);
+            _context.SaveChanges();
+        }
+
+        public void DeleteUserGenre(UserGenre userGenre)
+        {
+            var toRemove = _context.UserGenre
+                .Where(x => x.GenreID == userGenre.GenreID 
+                && x.UserUID == userGenre.UserUID)
+                .FirstOrDefault();
+            _context.UserGenre.Remove(toRemove);
+            _context.SaveChanges();
         }
     }
 }

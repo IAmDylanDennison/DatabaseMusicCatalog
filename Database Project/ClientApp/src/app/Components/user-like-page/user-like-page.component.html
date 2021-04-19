@@ -1,0 +1,25 @@
+<h1>List of Likes</h1>
+
+<app-table *ngIf="userMusic" [elements]="userMusic"
+           (elementClicked)="deleteMusic($event)"
+           [title]="'Liked Music'"
+           [individualUrl]="'../song'"
+           [primaryKey]="'musicId'"></app-table>
+
+<br />
+
+
+<app-table *ngIf="userGenre"
+           [elements]="userGenre"
+           (elementClicked)="deleteGenre($event)"
+           [title]="'Liked Genres'"
+           [individualUrl]="'../genre'"
+           [primaryKey]="'genreID'"></app-table>
+
+<br />
+<app-table *ngIf="userArtists"
+           [elements]="userArtists"
+           (elementClicked)="deleteArtist($event)"
+           [title]="'Liked Artists'"
+           [individualUrl]="'../artist'"
+           [primaryKey]="'artistID'"></app-table>
