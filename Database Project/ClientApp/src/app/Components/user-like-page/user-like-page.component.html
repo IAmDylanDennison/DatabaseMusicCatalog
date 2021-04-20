@@ -1,6 +1,7 @@
 <h1>List of Likes</h1>
 
-<app-table *ngIf="userMusic" [elements]="userMusic"
+<app-table 
+           *ngIf="userMusic" [elements]="userMusic"
            (elementClicked)="deleteMusic($event)"
            [title]="'Liked Music'"
            [individualUrl]="'../song'"
@@ -9,7 +10,8 @@
 <br />
 
 
-<app-table *ngIf="userGenre"
+<app-table 
+           *ngIf="userGenre"
            [elements]="userGenre"
            (elementClicked)="deleteGenre($event)"
            [title]="'Liked Genres'"
@@ -17,7 +19,8 @@
            [primaryKey]="'genreID'"></app-table>
 
 <br />
-<app-table *ngIf="userArtists"
+<app-table 
+           *ngIf="userArtists"
            [elements]="userArtists"
            (elementClicked)="deleteArtist($event)"
            [title]="'Liked Artists'"

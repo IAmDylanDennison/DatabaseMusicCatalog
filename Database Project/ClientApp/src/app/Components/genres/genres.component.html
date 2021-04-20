@@ -2,6 +2,6 @@
 <app-table *ngIf="genres"
            [elements]="genres"
            (elementClicked)="updateElement($event)"
-           [title]="Genres"
+           [title]="'Genres'"
            [individualUrl]="'../genre'"
            [primaryKey]="'genreID'"></app-table>

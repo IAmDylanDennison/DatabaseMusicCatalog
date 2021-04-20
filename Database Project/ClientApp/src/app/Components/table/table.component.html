@@ -21,6 +21,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let element of elements | paginate : {
+                id: primaryKey,
                 itemsPerPage: tableSize,
                 currentPage: page,
                 totalItems: count
@@ -36,7 +37,8 @@
   </table>
 
   <div class="d-flex justify-content-center">
-    <pagination-controls responsive="true"
+    <pagination-controls [id]="primaryKey"
+                         responsive="true"
                          previousLabel="Prev"
                          nextLabel="Next"
                          (pageChange)="onTableDataChange($event)">
