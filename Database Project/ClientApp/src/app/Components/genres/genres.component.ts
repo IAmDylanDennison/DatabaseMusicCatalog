@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user-service.service';
 import { UserGenre } from '../../models/userGenre';
 import { AuthService } from '../../services/auth-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-genres',
@@ -17,7 +18,8 @@ export class GenresComponent implements OnInit {
   constructor(private genreService: GenreService,
     private router: Router,
     private userService: UserService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.genreService.getAll().subscribe(x =>
@@ -27,7 +29,7 @@ export class GenresComponent implements OnInit {
 
   updateElement(element: Genre) {
     this.userService.likeGenre(element, this.authService.user$.value.uid).subscribe(x =>
-      this.router.navigate([''])
+      this.toastr.success("Success!", "Genre liked!")
       );
   }
 }

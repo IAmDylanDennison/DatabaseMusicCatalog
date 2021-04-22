@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user-service.service';
 import { AuthService } from '../../services/auth-service.service';
 import { UserArtist } from '../../models/userArtist';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-artists',
@@ -17,7 +18,8 @@ export class ArtistsComponent implements OnInit {
   constructor(private artistService: ArtistService,
     private router: Router,
     private userService: UserService,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.artistService.getAll().subscribe(x => {
@@ -27,7 +29,7 @@ export class ArtistsComponent implements OnInit {
 
   updateElement(element: Artist) {
     this.userService.likeArtist(element, this.auth.user$.value.uid).subscribe(x =>
-      this.router.navigate([''])
+      this.toastr.success("Success", "Artist Liked!")
     );
   }
 }

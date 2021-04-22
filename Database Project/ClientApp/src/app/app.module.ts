@@ -24,6 +24,10 @@ import { IndividualArtistComponent } from './Components/individual-artist/indivi
 import { IndividualGenreComponent } from './Components/individual-genre/individual-genre.component';
 import { UserLikePageComponent } from './Components/user-like-page/user-like-page.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +46,8 @@ import { UserLikePageComponent } from './Components/user-like-page/user-like-pag
     UserLikePageComponent
   ],
   imports: [
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
@@ -60,7 +66,9 @@ import { UserLikePageComponent } from './Components/user-like-page/user-like-pag
     ]),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    NgxPaginationModule
+    NgxPaginationModule,
+    CommonModule,
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

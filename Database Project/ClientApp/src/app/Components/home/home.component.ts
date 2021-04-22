@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MusicService } from '../../services/music.service';
 import { Music } from '../../models/music';
 import { UserService } from '../../services/user-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ export class HomeComponent {
   constructor(private authService: AuthService,
     private router: Router,
     private musicService: MusicService,
-    private userservice: UserService) { }
+    private userservice: UserService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.$authSubscription = this.authService.user$.subscribe(u => {
@@ -34,7 +36,7 @@ export class HomeComponent {
   }
   updateElement(element: Music) {
     this.userservice.likeMusic(element, this.currentUser.uid).subscribe(x => {
-      this.router.navigate(['']);
+      this.toastr.success("Success!", "Music Liked!")
     })
   }
 }
