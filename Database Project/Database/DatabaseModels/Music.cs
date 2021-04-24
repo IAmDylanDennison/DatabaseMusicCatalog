@@ -32,13 +32,14 @@ namespace Database_Project.Database.DatabaseModels
             GenreID = x.GenreID;
             Genre = x.Genre;
             ArtistID = x.ArtistID;
-            Artist = new Artist()
-            {
-                ArtistID = x.Artist.ArtistID,
-                Genre = x.Artist.Genre,
-                GenreID = x.Artist.GenreID,
-                Name = x.Artist.Name
-            };
+            if (x.Artist != null)
+                Artist = new Artist()
+                {
+                    ArtistID = x.Artist.ArtistID,
+                    Genre = x.Artist.Genre,
+                    GenreID = x.Artist.GenreID,
+                    Name = x.Artist.Name
+                };
         }
 
         public Music() { }
