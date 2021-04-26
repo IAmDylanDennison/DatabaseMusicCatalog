@@ -31,7 +31,11 @@
           <a [routerLink]="[individualUrl, element[primaryKey]]" *ngIf="k === 0">{{element[key]}}</a>
           <div *ngIf="k != 0">{{element[key]}}</div>
         </td>
-        <td><button (click)="updateElement(element)"></button></td>
+        <td>
+        <button (click)="updateElement(element)">
+          <div *ngIf="dislike">Dislike</div>
+          <div *ngIf="!dislike">Like</div>
+          </button></td>
       </tr>
     </tbody>
   </table>

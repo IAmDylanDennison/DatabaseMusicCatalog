@@ -14,6 +14,7 @@ export class TableComponent implements OnInit {
   @Input() title?: string;
   @Input() individualUrl?: string;
   @Input() primaryKey?: string;
+  @Input() dislike?: boolean;
 
   headers: Array<string>;
   headerNames: Array<string>;

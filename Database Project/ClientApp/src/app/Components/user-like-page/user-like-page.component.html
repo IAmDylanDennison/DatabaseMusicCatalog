@@ -5,7 +5,7 @@
            (elementClicked)="deleteMusic($event)"
            [title]="'Liked Music'"
            [individualUrl]="'../song'"
-           [primaryKey]="'musicId'"></app-table>
+           [primaryKey]="'musicId'" [dislike]="true"></app-table>
 
 <br />
 
@@ -16,7 +16,7 @@
            (elementClicked)="deleteGenre($event)"
            [title]="'Liked Genres'"
            [individualUrl]="'../genre'"
-           [primaryKey]="'genreID'"></app-table>
+           [primaryKey]="'genreID'" [dislike]="true"></app-table>
 
 <br />
 <app-table 
@@ -25,4 +25,5 @@
            (elementClicked)="deleteArtist($event)"
            [title]="'Liked Artists'"
            [individualUrl]="'../artist'"
-           [primaryKey]="'artistID'"></app-table>
+           [primaryKey]="'artistID'"
+           [dislike]="true"></app-table>
